@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.salaryrobot.scripting.api;
+package com.salaryrobot.api.strategy;
 
 /**
  * @author m.tkadlec

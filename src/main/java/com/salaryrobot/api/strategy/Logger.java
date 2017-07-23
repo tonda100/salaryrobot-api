@@ -1,4 +1,4 @@
-package com.salaryrobot.scripting.api;
+package com.salaryrobot.api.strategy;
 
 /**
  * This interface provides possibility of logging.
