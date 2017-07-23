@@ -4,8 +4,8 @@ package com.salaryrobot.strategy.example; /**
 
 import com.salaryrobot.api.entity.Commodity;
 import com.salaryrobot.api.entity.ExchangePair;
-import com.salaryrobot.api.strategy.StrategyScript;
 import com.salaryrobot.api.entity.StrategyParam;
+import com.salaryrobot.api.strategy.StrategyScript;
 
 /**
  * @author m.tkadlec
@@ -83,6 +83,9 @@ public class SimpleValueAveraging extends StrategyScript {
     //// helper methods
 
     private double calculateTotalUSD() {
+        if(wallet == null){
+            return 1000;
+        }
         double usd = wallet.getAvailableUSD();
         double curr = wallet.getAvailable(commodity);
         double bid = tickerMap.get(exchangePair).getBid();
@@ -105,15 +108,12 @@ public class SimpleValueAveraging extends StrategyScript {
             commodity = Commodity.BTC;
         }
         this.commodity = commodity;
-        switch (commodity) {
-            case LTC:
-                this.exchangePair = ExchangePair.LTC_USD;
-                break;
-            case XRP:
-                this.exchangePair = ExchangePair.XRP_USD;
-                break;
-            default:
-                this.exchangePair = ExchangePair.BTC_USD;
+        if (commodity == Commodity.LTC) {
+            this.exchangePair = ExchangePair.LTC_USD;
+        } else if (commodity == Commodity.XRP) {
+            this.exchangePair = ExchangePair.XRP_USD;
+        } else {
+            this.exchangePair = ExchangePair.BTC_USD;
         }
 
         return commodity;
@@ -137,7 +137,10 @@ public class SimpleValueAveraging extends StrategyScript {
      * @param step
      * @return the provided value. If value==null, returns default calculated value
      */
-    @StrategyParam(name = "Onboarding step", description = "Amount in USD the strategy will be increasing with every tick while onboarding the investment", index = 2)
+    @StrategyParam(
+        name = "Onboarding step",
+        description = "Amount in USD the strategy will be increasing with every tick while onboarding the investment",
+        index = 2)
     public double defineOnboardingStep(Double step) {
         if (step == null) {
             step = 0.8 / 30 / 24 / 60;
@@ -150,7 +153,10 @@ public class SimpleValueAveraging extends StrategyScript {
      * @param threshold
      * @return the provided value. If value==null, returns default calculated value
      */
-    @StrategyParam(name = "Trading threshold", description = "Amount in USD the strategy will buy or sell, depending on the commodity pair progression. Must me 6 USD or more.", index = 3)
+    @StrategyParam(
+        name = "Trading threshold",
+        description = "Amount in USD the strategy will buy or sell, depending on the commodity pair progression. Must me 6 USD or more.",
+        index = 3)
     public double defineTradingThreshold(Double threshold) {
         if (threshold == null || threshold < 6) {
             threshold = 6d;

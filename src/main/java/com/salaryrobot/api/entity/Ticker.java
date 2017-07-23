@@ -1,25 +1,37 @@
 package com.salaryrobot.api.entity;
 
+import java.io.Serializable;
+
 import javax.json.bind.annotation.JsonbProperty;
 
 /**
  * @author Antonin Stoklasek
  */
-public class Ticker {
+public class Ticker implements Serializable {
 
-    /** Lowest sell order */
+    public static final long serialVersionUID = -1L;
+
+    /**
+     * Lowest sell order
+     */
     @JsonbProperty("ask")
     private Double ask;
 
-    /** Highest buy order */
+    /**
+     * Highest buy order
+     */
     @JsonbProperty("bid")
     private Double bid;
 
-    /** The lowest price paid in last 24 hours */
+    /**
+     * The lowest price paid in last 24 hours
+     */
     @JsonbProperty("low")
     private Double lowest24h;
 
-    /** The highest price paid in last 24 hours */
+    /**
+     * The highest price paid in last 24 hours
+     */
     @JsonbProperty("high")
     private Double highest24h;
 
