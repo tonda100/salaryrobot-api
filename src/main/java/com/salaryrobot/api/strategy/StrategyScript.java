@@ -27,6 +27,13 @@ public abstract class StrategyScript {
 
     protected Map<ExchangePair, Ticker> tickerMap;
 
+    protected Double backtestUSDBalance = 0.0;
+    protected Double backtestBTCBalance = 0.0;
+    protected Double backtestXRPBalance = 0.0;
+    protected Double backtestLTCBalance = 0.0;
+    protected Double backtestETHBalance = 0.0;
+    protected Double backtestEURBalance = 0.0;
+
     /**
      * method called when the strategy is starting for the first time within the
      * plan
@@ -69,26 +76,26 @@ public abstract class StrategyScript {
     }
 
     public Double getBacktestUSDBalance() {
-        return 0.0;
+        return backtestUSDBalance;
     }
 
     public Double getBacktestBTCBalance() {
-        return 0.0;
+        return backtestBTCBalance;
     }
 
     public Double getBacktestXRPBalance() {
-        return 0.0;
+        return backtestXRPBalance;
     }
 
     public Double getBacktestLTCBalance() {
-        return 0.0;
+        return backtestLTCBalance;
     }
 
     public Double getBacktestETHBalance() {
-        return 0.0;
+        return backtestETHBalance;
     }
 
     public Double getBacktestEURBalance() {
-        return 0.0;
+        return backtestEURBalance;
     }
 }

@@ -171,4 +171,20 @@ public class SimpleValueAveraging extends StrategyScript {
         this.threshold = threshold;
         return threshold;
     }
+
+    /**
+     * @param value
+     * @return the provided value. If value==null, returns default calculated value
+     */
+    @StrategyParam(
+        name = @LocalizedText(language = Language.EN, text = "Backtest USD Balance"),
+        description = @LocalizedText(language = Language.EN, text = "USD balance to be used in backtesting the strategy"),
+        index = 4)
+    public Double defineBacktestUSDBalance(Double value) {
+        if (value == null) {
+            value = 1000.0;
+        }
+        this.backtestUSDBalance = value;
+        return value;
+    }
 }
