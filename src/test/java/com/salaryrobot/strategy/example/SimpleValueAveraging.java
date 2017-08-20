@@ -4,6 +4,8 @@ package com.salaryrobot.strategy.example; /**
 
 import com.salaryrobot.api.entity.Commodity;
 import com.salaryrobot.api.entity.ExchangePair;
+import com.salaryrobot.api.entity.Language;
+import com.salaryrobot.api.entity.LocalizedText;
 import com.salaryrobot.api.entity.StrategyParam;
 import com.salaryrobot.api.strategy.StrategyScript;
 
@@ -102,7 +104,10 @@ public class SimpleValueAveraging extends StrategyScript {
      * @param commodity commodity or null
      * @return the array of possible currencies with selected one in the first place
      */
-    @StrategyParam(name = "Trading Commodity", description = "Commodity to be traded, e.g. BTC", index = 0)
+    @StrategyParam(
+        name = @LocalizedText(language = Language.EN, text = "Trading Commodity"),
+        description = @LocalizedText(language = Language.EN, text = "Commodity to be traded, e.g. BTC"),
+        index = 0)
     public Commodity defineTradedCommodity(Commodity commodity) {
         if (commodity == null) {
             commodity = Commodity.BTC;
@@ -123,8 +128,10 @@ public class SimpleValueAveraging extends StrategyScript {
      * @param value
      * @return the provided value. If value==null, returns default calculated value
      */
-    @StrategyParam(name = "Target Value", description = "Amount in USD the strategy will be targeting to keep in invested commodity (e.g. BTC)"
-        , index = 1)
+    @StrategyParam(
+        name = @LocalizedText(language = Language.EN, text = "Target Value"),
+        description = @LocalizedText(language = Language.EN, text = "Amount in USD the strategy will be targeting to keep in invested commodity (e.g. BTC)"),
+        index = 1)
     public double defineTargetValue(Double value) {
         if (value == null) {
             value = calculateTotalUSD() * 0.8;
@@ -138,8 +145,8 @@ public class SimpleValueAveraging extends StrategyScript {
      * @return the provided value. If value==null, returns default calculated value
      */
     @StrategyParam(
-        name = "Onboarding step",
-        description = "Amount in USD the strategy will be increasing with every tick while onboarding the investment",
+        name = @LocalizedText(language = Language.EN, text = "Onboarding step"),
+        description = @LocalizedText(language = Language.EN, text = "Amount in USD the strategy will be increasing with every tick while onboarding the investment"),
         index = 2)
     public double defineOnboardingStep(Double step) {
         if (step == null) {
@@ -154,8 +161,8 @@ public class SimpleValueAveraging extends StrategyScript {
      * @return the provided value. If value==null, returns default calculated value
      */
     @StrategyParam(
-        name = "Trading threshold",
-        description = "Amount in USD the strategy will buy or sell, depending on the commodity pair progression. Must me 6 USD or more.",
+        name = @LocalizedText(language = Language.EN, text = "Trading threshold"),
+        description = @LocalizedText(language = Language.EN, text = "Amount in USD the strategy will buy or sell, depending on the commodity pair progression. Must me 6 USD or more."),
         index = 3)
     public double defineTradingThreshold(Double threshold) {
         if (threshold == null || threshold < 6) {

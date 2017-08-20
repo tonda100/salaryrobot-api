@@ -9,14 +9,12 @@ import java.lang.annotation.Target;
 /**
  * @author Antonin Stoklasek
  */
-@Target(ElementType.METHOD)
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface StrategyParam {
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface LocalizedText {
 
-    LocalizedText[] name();
+    Language language();
 
-    LocalizedText[] description();
-
-    int index();
+    String text();
 }

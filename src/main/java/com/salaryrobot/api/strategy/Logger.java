@@ -15,4 +15,5 @@ public interface Logger {
 
     void error(String msg);
 
+    void log(LogLevel level, String msg);
 }

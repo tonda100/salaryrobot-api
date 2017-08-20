@@ -11,6 +11,6 @@ public enum Commodity {
 
 	BTC,
 	XRP,
-	LTC
-
+	LTC,
+	ETH
 }

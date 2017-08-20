@@ -67,4 +67,28 @@ public abstract class StrategyScript {
     public void setTickerMap(Map<ExchangePair, Ticker> tickerMap) {
         this.tickerMap = tickerMap;
     }
+
+    public Double getBacktestUSDBalance() {
+        return 0.0;
+    }
+
+    public Double getBacktestBTCBalance() {
+        return 0.0;
+    }
+
+    public Double getBacktestXRPBalance() {
+        return 0.0;
+    }
+
+    public Double getBacktestLTCBalance() {
+        return 0.0;
+    }
+
+    public Double getBacktestETHBalance() {
+        return 0.0;
+    }
+
+    public Double getBacktestEURBalance() {
+        return 0.0;
+    }
 }

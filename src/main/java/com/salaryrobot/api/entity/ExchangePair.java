@@ -6,7 +6,8 @@ package com.salaryrobot.api.entity;
 public enum ExchangePair {
     BTC_USD(Commodity.BTC, PaymentCurrency.USD, "btcusd"),
     XRP_USD(Commodity.XRP, PaymentCurrency.USD, "xrpusd"),
-    LTC_USD(Commodity.LTC, PaymentCurrency.USD, "ltcusd");
+    LTC_USD(Commodity.LTC, PaymentCurrency.USD, "ltcusd"),
+    ETH_USD(Commodity.ETH, PaymentCurrency.USD, "ethusd");
 
     private Commodity commodity;
 
