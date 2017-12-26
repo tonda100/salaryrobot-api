@@ -37,6 +37,12 @@ public class Wallet {
     @JsonbProperty("ltc_available")
     private Double availableLTC;
 
+    /**
+     * How much ETH can be used in next transaction
+     */
+    @JsonbProperty("eth_available")
+    private Double availableETH;
+
 
     /**
      * How much USD is stuck in open transactions.
@@ -68,6 +74,12 @@ public class Wallet {
     @JsonbProperty("ltc_reserved")
     private Double reservedLTC;
 
+    /**
+     * How much ETH is stuck in open transactions.
+     */
+    @JsonbProperty("eth_reserved")
+    private Double reservedETH;
+
 
     /**
      * The amount of USD in total. availableUSD + reservedUSD = balanceUSD
@@ -98,6 +110,12 @@ public class Wallet {
      */
     @JsonbProperty("ltc_balance")
     private Double balanceLTC;
+
+    /**
+     * The amount of ETH in total. availableETH + reservedETH = balanceETH
+     */
+    @JsonbProperty("eth_balance")
+    private Double balanceETH;
 
 
     /**
@@ -155,6 +173,12 @@ public class Wallet {
     private Double feePercentLTCUSD;
 
     /**
+     * How much percent is the fee for transaction between ETH and USD
+     */
+    @JsonbProperty("ethusd_fee")
+    private Double feePercentETHUSD;
+
+    /**
      * This method returns available balance of given commodity.
      * @param commodity - commodity which balance should be returned.
      * @return - available balance of given commodity.
@@ -167,6 +191,8 @@ public class Wallet {
                 return availableLTC;
             case XRP:
                 return availableXRP;
+            case ETH:
+                return availableETH;
             default:
                 throw new IllegalArgumentException("No available balance for commodity: " + commodity);
         }
@@ -382,6 +408,38 @@ public class Wallet {
         this.feePercentLTCUSD = feePercentLTCUSD;
     }
 
+    public Double getAvailableETH() {
+        return availableETH;
+    }
+
+    public void setAvailableETH(Double availableETH) {
+        this.availableETH = availableETH;
+    }
+
+    public Double getReservedETH() {
+        return reservedETH;
+    }
+
+    public void setReservedETH(Double reservedETH) {
+        this.reservedETH = reservedETH;
+    }
+
+    public Double getBalanceETH() {
+        return balanceETH;
+    }
+
+    public void setBalanceETH(Double balanceETH) {
+        this.balanceETH = balanceETH;
+    }
+
+    public Double getFeePercentETHUSD() {
+        return feePercentETHUSD;
+    }
+
+    public void setFeePercentETHUSD(Double feePercentETHUSD) {
+        this.feePercentETHUSD = feePercentETHUSD;
+    }
+
     @Override
     public String toString() {
         return "Wallet{" +
@@ -390,16 +448,19 @@ public class Wallet {
             ", availableBTC=" + availableBTC +
             ", availableXRP=" + availableXRP +
             ", availableLTC=" + availableLTC +
+            ", availableETH=" + availableETH +
             ", reservedUSD=" + reservedUSD +
             ", reservedEUR=" + reservedEUR +
             ", reservedBTC=" + reservedBTC +
             ", reservedXRP=" + reservedXRP +
             ", reservedLTC=" + reservedLTC +
+            ", reservedETH=" + reservedETH +
             ", balanceUSD=" + balanceUSD +
             ", balanceEUR=" + balanceEUR +
             ", balanceBTC=" + balanceBTC +
             ", balanceXRP=" + balanceXRP +
             ", balanceLTC=" + balanceLTC +
+            ", balanceETH=" + balanceETH +
             ", feePercentBTCEUR=" + feePercentBTCEUR +
             ", feePercentBTCUSD=" + feePercentBTCUSD +
             ", feePercentEURUSD=" + feePercentEURUSD +
@@ -409,6 +470,7 @@ public class Wallet {
             ", feePercentLTCBTC=" + feePercentLTCBTC +
             ", feePercentLTCEUR=" + feePercentLTCEUR +
             ", feePercentLTCUSD=" + feePercentLTCUSD +
+            ", feePercentETHUSD=" + feePercentETHUSD +
             '}';
     }
 }

@@ -16,7 +16,7 @@ public interface BitstampTrader {
      *
      * @param commodityUnits - how much commodity want a user buy
      */
-    void buyCommodity(double commodityUnits);
+    void buyCommodity(Double commodityUnits);
 
     /**
      * This method buys an amount of commodity units for market price.
@@ -24,7 +24,7 @@ public interface BitstampTrader {
      * @param exchangePair   exchange pair for buying commodity
      * @param commodityUnits - how much commodity want a user buy
      */
-    void buyCommodity(ExchangePair exchangePair, double commodityUnits);
+    void buyCommodity(ExchangePair exchangePair, Double commodityUnits);
 
 
     /**
@@ -33,7 +33,7 @@ public interface BitstampTrader {
      *
      * @param commodityUnits - how much commodity want a user sell
      */
-    void sellCommodity(double commodityUnits);
+    void sellCommodity(Double commodityUnits);
 
     /**
      * This method sells an amount of commodity units for market price.
@@ -41,6 +41,6 @@ public interface BitstampTrader {
      * @param exchangePair   exchange pair for selling commodity
      * @param commodityUnits - how much commodity want a user sell
      */
-    void sellCommodity(ExchangePair exchangePair, double commodityUnits);
+    void sellCommodity(ExchangePair exchangePair, Double commodityUnits);
 
 }

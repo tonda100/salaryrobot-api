@@ -15,7 +15,7 @@ public enum ExchangePair {
 
     private String code;
 
-    private ExchangePair(Commodity commodity, PaymentCurrency paymentCurrency, String code) {
+    ExchangePair(Commodity commodity, PaymentCurrency paymentCurrency, String code) {
         this.commodity = commodity;
         this.paymentCurrency = paymentCurrency;
         this.code = code;

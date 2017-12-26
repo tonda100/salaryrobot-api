@@ -7,13 +7,13 @@ package com.salaryrobot.api.strategy;
  */
 public interface Logger {
 
-    void debug(String msg);
+    void debug(String msg, Object... params);
 
-    void info(String msg);
+    void info(String msg, Object... params);
 
-    void warn(String msg);
+    void warn(String msg, Object... params);
 
-    void error(String msg);
+    void error(String msg, Object... params);
 
-    void log(LogLevel level, String msg);
+    void log(LogLevel level, String msg, Object... params);
 }
