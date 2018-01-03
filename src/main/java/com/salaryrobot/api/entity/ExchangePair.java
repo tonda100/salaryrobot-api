@@ -4,10 +4,21 @@ package com.salaryrobot.api.entity;
  * @author Antonin Stoklasek
  */
 public enum ExchangePair {
-    BTC_USD(Commodity.BTC, PaymentCurrency.USD, "btcusd"),
-    XRP_USD(Commodity.XRP, PaymentCurrency.USD, "xrpusd"),
-    LTC_USD(Commodity.LTC, PaymentCurrency.USD, "ltcusd"),
-    ETH_USD(Commodity.ETH, PaymentCurrency.USD, "ethusd");
+    BTC_USD(Commodity.BTC, PaymentCurrency.USD),
+    BTC_EUR(Commodity.BTC, PaymentCurrency.EUR),
+    EUR_USD(Commodity.EUR, PaymentCurrency.USD),
+    XRP_USD(Commodity.XRP, PaymentCurrency.USD),
+    XRP_EUR(Commodity.XRP, PaymentCurrency.EUR),
+    XRP_BTC(Commodity.XRP, PaymentCurrency.BTC),
+    LTC_USD(Commodity.LTC, PaymentCurrency.USD),
+    LTC_EUR(Commodity.LTC, PaymentCurrency.EUR),
+    LTC_BTC(Commodity.LTC, PaymentCurrency.BTC),
+    ETH_USD(Commodity.ETH, PaymentCurrency.USD),
+    ETH_EUR(Commodity.ETH, PaymentCurrency.EUR),
+    ETH_BTC(Commodity.ETH, PaymentCurrency.BTC),
+    BCH_USD(Commodity.BCH, PaymentCurrency.USD),
+    BCH_EUR(Commodity.BCH, PaymentCurrency.EUR),
+    BCH_BTC(Commodity.BCH, PaymentCurrency.BTC);
 
     private Commodity commodity;
 
@@ -15,10 +26,10 @@ public enum ExchangePair {
 
     private String code;
 
-    ExchangePair(Commodity commodity, PaymentCurrency paymentCurrency, String code) {
+    ExchangePair(Commodity commodity, PaymentCurrency paymentCurrency) {
         this.commodity = commodity;
         this.paymentCurrency = paymentCurrency;
-        this.code = code;
+        this.code = commodity.getCode() + paymentCurrency.getCode();
     }
 
     public Commodity getCommodity() {
