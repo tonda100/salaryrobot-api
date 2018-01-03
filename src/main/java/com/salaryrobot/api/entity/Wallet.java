@@ -1,7 +1,6 @@
 package com.salaryrobot.api.entity;
 
-import javax.json.JsonObject;
-import javax.json.bind.annotation.JsonbProperty;
+import java.util.Map;
 
 
 /**
@@ -17,10 +16,10 @@ public class Wallet {
 
     private static final String FEE_SUFFIX = "_fee";
 
-    private final JsonObject data;
+    private final Map data;
 
 
-    public Wallet(JsonObject data) {
+    public Wallet(Map data) {
         this.data = data;
     }
 
@@ -34,7 +33,7 @@ public class Wallet {
     public Double getAvailable(Asset asset) {
         String key = asset.getCode() + AVAILABLE_SUFFIX;
         if (data.containsKey(key)) {
-            String value = data.getString(key);
+            String value = (String) data.get(key);
             return Double.valueOf(value);
         }
         return null;
@@ -50,7 +49,7 @@ public class Wallet {
     public Double getReserved(Asset asset) {
         String key = asset.getCode() + RESERVED_SUFFIX;
         if (data.containsKey(key)) {
-            String value = data.getString(key);
+            String value = (String) data.get(key);
             return Double.valueOf(value);
         }
         return null;
@@ -66,7 +65,7 @@ public class Wallet {
     public Double getTotal(Asset asset) {
         String key = asset.getCode() + TOTAL_SUFFIX;
         if (data.containsKey(key)) {
-            String value = data.getString(key);
+            String value = (String) data.get(key);
             return Double.valueOf(value);
         }
         return null;
@@ -83,7 +82,7 @@ public class Wallet {
     public Double getFeePercentage(ExchangePair exchangePair) {
         String key = exchangePair.getCode() + FEE_SUFFIX;
         if (data.containsKey(key)) {
-            String value = data.getString(key);
+            String value = (String) data.get(key);
             return Double.valueOf(value);
         }
         return null;

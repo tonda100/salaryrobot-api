@@ -3,6 +3,7 @@
  */
 package com.salaryrobot.api.strategy;
 
+import java.time.ZonedDateTime;
 import java.util.Map;
 
 import com.salaryrobot.api.entity.Wallet;
@@ -31,6 +32,8 @@ public abstract class StrategyScript {
     // graph drawing
     protected Graphs graphs;
 
+    protected ZonedDateTime now = ZonedDateTime.now();
+
     /**
      * method called when the strategy is starting for the first time within the
      * plan
@@ -47,6 +50,9 @@ public abstract class StrategyScript {
      */
     public abstract void stop();
 
+    public void setNow(ZonedDateTime now) {
+        this.now = now;
+    }
 
     public void setStorage(Map storage) {
         this.storage = storage;
