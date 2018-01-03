@@ -1,27 +1,26 @@
 package com.salaryrobot.api.entity;
 
-import java.io.Serializable;
+import java.time.ZonedDateTime;
 
-import javax.json.bind.annotation.JsonbProperty;
 
 /**
  * @author Antonin Stoklasek
  */
-public class Ticker implements Serializable {
+public class Price {
 
-    public static final long serialVersionUID = -1L;
+    private ZonedDateTime timestamp;
 
-    /**
-     * Lowest sell order
-     */
-    @JsonbProperty("ask")
     private Double ask;
 
-    /**
-     * Highest buy order
-     */
-    @JsonbProperty("bid")
     private Double bid;
+
+    public ZonedDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(ZonedDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 
     public Double getAsk() {
         return ask;
@@ -41,9 +40,10 @@ public class Ticker implements Serializable {
 
     @Override
     public String toString() {
-        return "Ticker{" +
-            "ask=" + ask +
-            ", bid=" + bid +
-            '}';
+        return "Price{" +
+                "timestamp=" + timestamp +
+                ", ask=" + ask +
+                ", bid=" + bid +
+                '}';
     }
 }

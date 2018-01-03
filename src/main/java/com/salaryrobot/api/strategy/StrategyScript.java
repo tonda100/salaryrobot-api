@@ -5,27 +5,31 @@ package com.salaryrobot.api.strategy;
 
 import java.util.Map;
 
-import com.salaryrobot.api.entity.ExchangePair;
-import com.salaryrobot.api.entity.Ticker;
 import com.salaryrobot.api.entity.Wallet;
+
 
 /**
  * @author m.tkadlec
  */
 public abstract class StrategyScript {
 
-    // fields to be set by bindings
+    // storage which survives the ticks
     protected Map storage;
 
-    protected BitstampTrader bitstamp;
+    // buy and selling commodity
+    protected Trader trader;
 
-    protected Logger log;
-
-    protected Graphs graphs;
-
+    // account balances
     protected Wallet wallet;
 
-    protected Map<ExchangePair, Ticker> tickerMap;
+    // provide price of commodity
+    protected Ticker ticker;
+
+    // logging the run
+    protected Logger log;
+
+    // graph drawing
+    protected Graphs graphs;
 
     /**
      * method called when the strategy is starting for the first time within the
@@ -48,10 +52,6 @@ public abstract class StrategyScript {
         this.storage = storage;
     }
 
-    public void setBitstamp(BitstampTrader bitstamp) {
-        this.bitstamp = bitstamp;
-    }
-
     public void setLog(Logger log) {
         this.log = log;
     }
@@ -64,8 +64,11 @@ public abstract class StrategyScript {
         this.wallet = wallet;
     }
 
-    public void setTickerMap(Map<ExchangePair, Ticker> tickerMap) {
-        this.tickerMap = tickerMap;
+    public void setTrader(Trader trader) {
+        this.trader = trader;
     }
 
+    public void setTicker(Ticker ticker) {
+        this.ticker = ticker;
+    }
 }

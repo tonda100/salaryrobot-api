@@ -1,5 +1,8 @@
 package com.salaryrobot.api.strategy;
 
+import com.salaryrobot.api.entity.LogLevel;
+
+
 /**
  * This interface provides possibility of logging.
  *

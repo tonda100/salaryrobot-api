@@ -8,7 +8,7 @@ import com.salaryrobot.api.entity.ExchangePair;
 /**
  * @author m.tkadlec
  */
-public interface BitstampTrader {
+public interface Trader {
 
 
     /**

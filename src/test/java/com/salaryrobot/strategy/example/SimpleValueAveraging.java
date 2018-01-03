@@ -36,8 +36,8 @@ public class SimpleValueAveraging extends StrategyScript {
     public void tick() {
         double usd = wallet.getAvailable(PaymentCurrency.USD);
         double curr = wallet.getAvailable(commodity);
-        double bid = tickerMap.get(exchangePair).getBid();
-        double ask = tickerMap.get(exchangePair).getAsk();
+        double bid = ticker.getLatest(exchangePair).getBid();
+        double ask = ticker.getLatest(exchangePair).getAsk();
         double currInUSD = curr * (bid + ask) / 2;
         double totalUSD = usd + currInUSD;
 
@@ -50,14 +50,14 @@ public class SimpleValueAveraging extends StrategyScript {
         double borderBuy = currentTarget - threshold;
         if (borderBuy > currInUSD && usd > threshold) {
             double needCURR = (currentTarget - currInUSD) / ask;
-            bitstamp.buyCommodity(exchangePair, needCURR);
+            trader.buyCommodity(exchangePair, needCURR);
             log.info("byuing " + needCURR + " for ask: " + ask);
         }
 
         double borderSell = currentTarget + threshold;
         if (borderSell < currInUSD && currInUSD > threshold) {
             double needCURR = (currInUSD - currentTarget) / bid;
-            bitstamp.sellCommodity(ExchangePair.XRP_USD, needCURR);
+            trader.sellCommodity(ExchangePair.XRP_USD, needCURR);
             log.info("selling " + needCURR + " for bid: " + bid);
         }
 
@@ -92,8 +92,8 @@ public class SimpleValueAveraging extends StrategyScript {
         }
         double usd = wallet.getAvailable(PaymentCurrency.USD);
         double curr = wallet.getAvailable(commodity);
-        double bid = tickerMap.get(exchangePair).getBid();
-        double ask = tickerMap.get(exchangePair).getAsk();
+        double bid = ticker.getLatest(exchangePair).getBid();
+        double ask = ticker.getLatest(exchangePair).getAsk();
         double currInUSD = curr * (bid + ask) / 2;
         double totalUSD = usd + currInUSD;
         return totalUSD;
@@ -175,21 +175,5 @@ public class SimpleValueAveraging extends StrategyScript {
         }
         this.threshold = threshold;
         return threshold;
-    }
-
-    /**
-     * @param value
-     * @return the provided value. If value==null, returns default calculated value
-     */
-    @StrategyParam(
-            name = @LocalizedText(language = Language.EN, text = "Backtest USD Balance"),
-            description = @LocalizedText(language = Language.EN, text = "USD balance to be used in backtesting the strategy"),
-            index = 4)
-    public Double defineBacktestUSDBalance(Double value) {
-        if (value == null) {
-            value = 1000.0;
-        }
-        //this.backtestUSDBalance = value;
-        return value;
     }
 }

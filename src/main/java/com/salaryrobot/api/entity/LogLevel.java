@@ -1,4 +1,4 @@
-package com.salaryrobot.api.strategy;
+package com.salaryrobot.api.entity;
 
 /**
  * @author Antonin Stoklasek

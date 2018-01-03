@@ -80,7 +80,7 @@ public class Wallet {
      * @param exchangePair - exchange pair which fee percentage should be returned.
      * @return - fee percentage of given exchange pair.
      */
-    public Double getFeePercentge(ExchangePair exchangePair) {
+    public Double getFeePercentage(ExchangePair exchangePair) {
         String key = exchangePair.getCode() + FEE_SUFFIX;
         if (data.containsKey(key)) {
             String value = data.getString(key);
