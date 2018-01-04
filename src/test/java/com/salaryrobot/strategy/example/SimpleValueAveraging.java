@@ -18,8 +18,6 @@ public class SimpleValueAveraging extends StrategyScript {
 
     private Double targetValue;
 
-    private Commodity commodity;
-
     private ExchangePair exchangePair;
 
     private Double step;
@@ -34,8 +32,8 @@ public class SimpleValueAveraging extends StrategyScript {
 
     @Override
     public void tick() {
-        double usd = wallet.getAvailable(PaymentCurrency.USD);
-        double curr = wallet.getAvailable(commodity);
+        double usd = wallet.getAvailable(exchangePair.getPaymentCurrency());
+        double curr = wallet.getAvailable(exchangePair.getCommodity());
         double bid = ticker.getLatest(exchangePair).getBid();
         double ask = ticker.getLatest(exchangePair).getAsk();
         double currInUSD = curr * (bid + ask) / 2;
@@ -61,20 +59,20 @@ public class SimpleValueAveraging extends StrategyScript {
             log.info("selling " + needCURR + " for bid: " + bid);
         }
 
-        graphs.plot("USD", usd);
-        graphs.plot(commodity.toString(), curr);
-        graphs.plot(commodity.toString() + "_IN_USD", currInUSD);
-        graphs.plot("TOTAL_USD", totalUSD);
-        graphs.plot(commodity.toString() + "_PRICE", (bid + ask) / 2);
+        graphs.plot(exchangePair.getPaymentCurrency().getCode(), usd);
+        graphs.plot(exchangePair.getCommodity().getCode(), curr);
+        graphs.plot(exchangePair.getCommodity().getCode() + "_in_" + exchangePair.getPaymentCurrency().getCode(), currInUSD);
+        graphs.plot("total_" + exchangePair.getPaymentCurrency().getCode(), totalUSD);
+        graphs.plot("PRICE", (bid + ask) / 2);
         graphs.plot("CURRENT_TARGET", currentTarget);
         log.info("USD:\t" + usd);
-        log.info(commodity.toString() + ":\t" + curr);
-        log.info(commodity.toString() + "_IN_USD:\t" + currInUSD);
-        log.info("TOTAL_USD:\t" + totalUSD);
+        log.info(exchangePair.getCommodity().getCode() + ":\t" + curr);
+        log.info(exchangePair.getCommodity().getCode() + "_in_" + exchangePair.getPaymentCurrency().getCode()  + ":\t" + currInUSD);
+        log.info("total_" + exchangePair.getPaymentCurrency().getCode() + ":\t" + totalUSD);
         log.info("ask:\t" + ask);
         log.info("bid:\t" + bid);
         log.info("Current Target:\t" + currentTarget);
-        log.info("tick finished\n");
+        log.info("tick finished");
 
     }
 
@@ -84,60 +82,28 @@ public class SimpleValueAveraging extends StrategyScript {
 
     }
 
-    //// helper methods
 
-    private double calculateTotalUSD() {
-        if (wallet == null) {
-            return 1000;
-        }
-        double usd = wallet.getAvailable(PaymentCurrency.USD);
-        double curr = wallet.getAvailable(commodity);
-        double bid = ticker.getLatest(exchangePair).getBid();
-        double ask = ticker.getLatest(exchangePair).getAsk();
-        double currInUSD = curr * (bid + ask) / 2;
-        double totalUSD = usd + currInUSD;
-        return totalUSD;
-
-    }
-
-    //// Parametrization methods:
-
-    /**
-     * @param commodity commodity or null
-     * @return the array of possible currencies with selected one in the first place
-     */
     @StrategyParam(
-            name = @LocalizedText(language = Language.EN, text = "Trading Commodity"),
-            description = @LocalizedText(language = Language.EN, text = "Commodity to be traded, e.g. BTC"),
+            name = @LocalizedText(language = Language.EN, text = "Trading Exchange Pair"),
+            description = @LocalizedText(language = Language.EN, text = "Exchange Pair to be traded, e.g. BTC_USD"),
             index = 0)
-    public Commodity defineTradedCommodity(Commodity commodity) {
-        if (commodity == null) {
-            commodity = Commodity.BTC;
+    public ExchangePair defineExchangePair(ExchangePair exchangePair) {
+        if (exchangePair == null) {
+            exchangePair = ExchangePair.BTC_USD;
         }
-        this.commodity = commodity;
-        if (commodity == Commodity.LTC) {
-            this.exchangePair = ExchangePair.LTC_USD;
-        } else if (commodity == Commodity.XRP) {
-            this.exchangePair = ExchangePair.XRP_USD;
-        } else {
-            this.exchangePair = ExchangePair.BTC_USD;
-        }
+        this.exchangePair = exchangePair;
 
-        return commodity;
+        return exchangePair;
     }
 
-    /**
-     * @param value
-     * @return the provided value. If value==null, returns default calculated value
-     */
     @StrategyParam(
             name = @LocalizedText(language = Language.EN, text = "Target Value"),
-            description = @LocalizedText(language = Language.EN, text = "Amount in USD the strategy will be targeting to keep in invested "
-                    + "commodity (e.g. BTC)"),
+            description = @LocalizedText(language = Language.EN, text = "Amount in payment currency (e.g. USD) "
+                    + "the strategy will be targeting to keep in invested commodity (e.g. BTC)"),
             index = 1)
     public double defineTargetValue(Double value) {
         if (value == null) {
-            value = calculateTotalUSD() * 0.8;
+            value = 1_000.0;
         }
         this.targetValue = value;
         return value;
