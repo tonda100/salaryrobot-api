@@ -8,34 +8,28 @@ import java.time.ZonedDateTime;
  */
 public class Price {
 
-    private ZonedDateTime timestamp;
+    private final ZonedDateTime timestamp;
 
-    private Double ask;
+    private final Double ask;
 
-    private Double bid;
+    private final Double bid;
+
+    public Price(ZonedDateTime timestamp, Double ask, Double bid) {
+        this.timestamp = timestamp;
+        this.ask = ask;
+        this.bid = bid;
+    }
 
     public ZonedDateTime getTimestamp() {
         return timestamp;
-    }
-
-    public void setTimestamp(ZonedDateTime timestamp) {
-        this.timestamp = timestamp;
     }
 
     public Double getAsk() {
         return ask;
     }
 
-    public void setAsk(Double ask) {
-        this.ask = ask;
-    }
-
     public Double getBid() {
         return bid;
-    }
-
-    public void setBid(Double bid) {
-        this.bid = bid;
     }
 
     @Override

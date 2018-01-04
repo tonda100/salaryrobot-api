@@ -6,8 +6,6 @@ package com.salaryrobot.api.strategy;
 import java.time.ZonedDateTime;
 import java.util.Map;
 
-import com.salaryrobot.api.entity.Wallet;
-
 
 /**
  * @author m.tkadlec
