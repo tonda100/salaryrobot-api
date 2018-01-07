@@ -1,15 +1,11 @@
-package com.salaryrobot.strategy.example; /**
- *
- */
+package com.salaryrobot.strategy.example;
 
-import com.salaryrobot.api.entity.Commodity;
 import com.salaryrobot.api.entity.ExchangePair;
 import com.salaryrobot.api.entity.Language;
 import com.salaryrobot.api.entity.LocalizedText;
-import com.salaryrobot.api.entity.PaymentCurrency;
+import com.salaryrobot.api.entity.Price;
 import com.salaryrobot.api.entity.StrategyParam;
 import com.salaryrobot.api.strategy.StrategyScript;
-
 
 /**
  * @author m.tkadlec
@@ -34,8 +30,9 @@ public class SimpleValueAveraging extends StrategyScript {
     public void tick() {
         double usd = wallet.getAvailable(exchangePair.getPaymentCurrency());
         double curr = wallet.getAvailable(exchangePair.getCommodity());
-        double bid = ticker.getLatest(exchangePair).getBid();
-        double ask = ticker.getLatest(exchangePair).getAsk();
+        Price p = ticker.getLatest(exchangePair);
+        double bid = p.getBid();
+        double ask = p.getAsk();
         double currInUSD = curr * (bid + ask) / 2;
         double totalUSD = usd + currInUSD;
 
@@ -67,7 +64,7 @@ public class SimpleValueAveraging extends StrategyScript {
         graphs.plot("CURRENT_TARGET", currentTarget);
         log.info("USD:\t" + usd);
         log.info(exchangePair.getCommodity().getCode() + ":\t" + curr);
-        log.info(exchangePair.getCommodity().getCode() + "_in_" + exchangePair.getPaymentCurrency().getCode()  + ":\t" + currInUSD);
+        log.info(exchangePair.getCommodity().getCode() + "_in_" + exchangePair.getPaymentCurrency().getCode() + ":\t" + currInUSD);
         log.info("total_" + exchangePair.getPaymentCurrency().getCode() + ":\t" + totalUSD);
         log.info("ask:\t" + ask);
         log.info("bid:\t" + bid);
@@ -98,8 +95,7 @@ public class SimpleValueAveraging extends StrategyScript {
 
     @StrategyParam(
             name = @LocalizedText(language = Language.EN, text = "Target Value"),
-            description = @LocalizedText(language = Language.EN, text = "Amount in payment currency (e.g. USD) "
-                    + "the strategy will be targeting to keep in invested commodity (e.g. BTC)"),
+            description = @LocalizedText(language = Language.EN, text = "Amount in payment currency (e.g. USD) the strategy will be targeting to keep in invested commodity (e.g. BTC)"),
             index = 1)
     public double defineTargetValue(Double value) {
         if (value == null) {
@@ -115,8 +111,7 @@ public class SimpleValueAveraging extends StrategyScript {
      */
     @StrategyParam(
             name = @LocalizedText(language = Language.EN, text = "Onboarding step"),
-            description = @LocalizedText(language = Language.EN, text = "Amount in USD the strategy will be increasing with every tick while "
-                    + "onboarding the investment"),
+            description = @LocalizedText(language = Language.EN, text = "Amount in USD the strategy will be increasing with every tick while onboarding the investment"),
             index = 2)
     public double defineOnboardingStep(Double step) {
         if (step == null) {
@@ -132,8 +127,7 @@ public class SimpleValueAveraging extends StrategyScript {
      */
     @StrategyParam(
             name = @LocalizedText(language = Language.EN, text = "Trading threshold"),
-            description = @LocalizedText(language = Language.EN, text = "Amount in USD the strategy will buy or sell, depending on the "
-                    + "commodity pair progression. Must me 6 USD or more."),
+            description = @LocalizedText(language = Language.EN, text = "Amount in USD the strategy will buy or sell, depending on the commodity pair progression. Must me 6 USD or more."),
             index = 3)
     public double defineTradingThreshold(Double threshold) {
         if (threshold == null || threshold < 6) {

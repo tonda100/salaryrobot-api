@@ -1,27 +1,25 @@
 package com.salaryrobot.api.entity;
 
-import java.time.ZonedDateTime;
+import java.io.Serializable;
 
 
 /**
  * @author Antonin Stoklasek
  */
-public class Price {
+public class Price implements Serializable{
 
-    private final ZonedDateTime timestamp;
+    public static final long serialVersionUID = -1L;
 
-    private final Double ask;
+    private Double ask;
 
-    private final Double bid;
+    private Double bid;
 
-    public Price(ZonedDateTime timestamp, Double ask, Double bid) {
-        this.timestamp = timestamp;
-        this.ask = ask;
-        this.bid = bid;
+    public Price() {
     }
 
-    public ZonedDateTime getTimestamp() {
-        return timestamp;
+    public Price(Double ask, Double bid) {
+        this.ask = ask;
+        this.bid = bid;
     }
 
     public Double getAsk() {
@@ -32,11 +30,18 @@ public class Price {
         return bid;
     }
 
+    public void setAsk(Double ask) {
+        this.ask = ask;
+    }
+
+    public void setBid(Double bid) {
+        this.bid = bid;
+    }
+
     @Override
     public String toString() {
         return "Price{" +
-                "timestamp=" + timestamp +
-                ", ask=" + ask +
+                "ask=" + ask +
                 ", bid=" + bid +
                 '}';
     }

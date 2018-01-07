@@ -1,10 +1,11 @@
 package com.salaryrobot.api.strategy;
 
 import java.time.ZonedDateTime;
-import java.util.List;
+import java.util.TreeSet;
 
 import com.salaryrobot.api.entity.ExchangePair;
 import com.salaryrobot.api.entity.Price;
+import com.salaryrobot.api.entity.TimestampPrice;
 
 
 /**
@@ -14,7 +15,7 @@ public interface Ticker {
 
     Price getLatest(ExchangePair exchangePair);
 
-    List<Price> getLast(ExchangePair exchangePair, ZonedDateTime to);
+    TreeSet<TimestampPrice> getLast(ExchangePair exchangePair, ZonedDateTime from);
 
-    List<Price> getAll(ExchangePair exchangePair, ZonedDateTime from, ZonedDateTime to);
+    TreeSet<TimestampPrice> getAll(ExchangePair exchangePair, ZonedDateTime from, ZonedDateTime to);
 }
