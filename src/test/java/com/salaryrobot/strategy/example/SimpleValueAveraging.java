@@ -52,7 +52,7 @@ public class SimpleValueAveraging extends StrategyScript {
         double borderSell = currentTarget + threshold;
         if (borderSell < currInUSD && currInUSD > threshold) {
             double needCURR = (currInUSD - currentTarget) / bid;
-            trader.sellCommodity(ExchangePair.XRP_USD, needCURR);
+            trader.sellCommodity(exchangePair, needCURR);
             log.info("selling " + needCURR + " for bid: " + bid);
         }
 
