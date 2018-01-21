@@ -1,6 +1,10 @@
-package com.salaryrobot.api.entity;
+package com.salaryrobot.api.exchange.entity;
+
 
 /**
+ * Enumeration of all possible payment currencies.
+ * This payment currencies are used to pay for {@link Commodity}.
+ *
  * @author Antonin Stoklasek
  */
 public enum PaymentCurrency implements Asset {

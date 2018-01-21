@@ -1,9 +1,11 @@
-package com.salaryrobot.api.entity;
+package com.salaryrobot.api.ticker.entity;
 
 import java.time.ZonedDateTime;
 
 
 /**
+ * Object for storing price with timestamp information.
+ *
  * @author Antonin Stoklasek
  */
 public class TimestampPrice extends Price implements Comparable<TimestampPrice> {

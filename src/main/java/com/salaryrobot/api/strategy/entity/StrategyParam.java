@@ -1,4 +1,4 @@
-package com.salaryrobot.api.entity;
+package com.salaryrobot.api.strategy.entity;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -6,15 +6,20 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+
 /**
+ * Annotation for describing strategy parameter in multiple languages.
+ *
  * @author Antonin Stoklasek
  */
+@Target(ElementType.METHOD)
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.ANNOTATION_TYPE)
-public @interface LocalizedText {
+public @interface StrategyParam {
 
-    Language language();
+    LocalizedText[] name();
 
-    String text();
+    LocalizedText[] description();
+
+    int index();
 }

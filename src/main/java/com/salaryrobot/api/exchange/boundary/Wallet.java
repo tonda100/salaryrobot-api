@@ -1,11 +1,11 @@
-package com.salaryrobot.api.strategy;
+package com.salaryrobot.api.exchange.boundary;
 
-import com.salaryrobot.api.entity.Asset;
-import com.salaryrobot.api.entity.ExchangePair;
+import com.salaryrobot.api.exchange.entity.Asset;
+import com.salaryrobot.api.exchange.entity.ExchangePair;
 
 
 /**
- * This inteface represents stock market wallet.
+ * This interface represents stock market wallet.
  * It provides information about balances of your account.
  *
  * @author Antonin Stoklasek

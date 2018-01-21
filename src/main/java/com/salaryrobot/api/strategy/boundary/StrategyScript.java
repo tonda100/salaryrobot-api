@@ -1,13 +1,18 @@
-/**
- *
- */
-package com.salaryrobot.api.strategy;
+package com.salaryrobot.api.strategy.boundary;
 
 import java.time.ZonedDateTime;
 import java.util.Map;
 
+import com.salaryrobot.api.exchange.boundary.Trader;
+import com.salaryrobot.api.exchange.boundary.Wallet;
+import com.salaryrobot.api.graph.boundary.Graphs;
+import com.salaryrobot.api.logger.boundary.Logger;
+import com.salaryrobot.api.ticker.boundary.Ticker;
+
 
 /**
+ * Common parent of Salary Robot strategies.
+ *
  * @author m.tkadlec
  */
 public abstract class StrategyScript {
@@ -21,7 +26,7 @@ public abstract class StrategyScript {
     // account balances
     protected Wallet wallet;
 
-    // provide price of commodity
+    // provide ticker of commodity
     protected Ticker ticker;
 
     // logging the run

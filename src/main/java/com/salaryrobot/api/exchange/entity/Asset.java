@@ -1,4 +1,5 @@
-package com.salaryrobot.api.entity;
+package com.salaryrobot.api.exchange.entity;
+
 
 /**
  * Common interface to retrieve code from {@link Commodity} and {@link PaymentCurrency}.

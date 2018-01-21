@@ -1,6 +1,9 @@
-package com.salaryrobot.api.entity;
+package com.salaryrobot.api.exchange.entity;
+
 
 /**
+ * Enumeration of all possible combinations of {@link Commodity} and {@link PaymentCurrency}.
+ *
  * @author Antonin Stoklasek
  */
 public enum ExchangePair {

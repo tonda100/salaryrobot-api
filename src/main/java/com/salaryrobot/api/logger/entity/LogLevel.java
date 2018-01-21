@@ -1,6 +1,8 @@
-package com.salaryrobot.api.entity;
+package com.salaryrobot.api.logger.entity;
 
 /**
+ * Enumeration of all possible log levels.
+ *
  * @author Antonin Stoklasek
  */
 public enum LogLevel {

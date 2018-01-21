@@ -1,11 +1,11 @@
 package com.salaryrobot.strategy.example;
 
-import com.salaryrobot.api.entity.ExchangePair;
-import com.salaryrobot.api.entity.Language;
-import com.salaryrobot.api.entity.LocalizedText;
-import com.salaryrobot.api.entity.Price;
-import com.salaryrobot.api.entity.StrategyParam;
-import com.salaryrobot.api.strategy.StrategyScript;
+import com.salaryrobot.api.exchange.entity.ExchangePair;
+import com.salaryrobot.api.strategy.entity.Language;
+import com.salaryrobot.api.strategy.entity.LocalizedText;
+import com.salaryrobot.api.ticker.entity.Price;
+import com.salaryrobot.api.strategy.entity.StrategyParam;
+import com.salaryrobot.api.strategy.boundary.StrategyScript;
 
 /**
  * @author m.tkadlec

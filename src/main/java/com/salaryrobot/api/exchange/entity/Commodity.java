@@ -1,12 +1,12 @@
-/**
- *
- */
-package com.salaryrobot.api.entity;
+package com.salaryrobot.api.exchange.entity;
+
 
 /**
+ * Enumeration of all possible commodities.
+ *
  * @author m.tkadlec
  */
-public enum Commodity implements Asset{
+public enum Commodity implements Asset {
 
     BTC("btc"),
     XRP("xrp"),
@@ -17,7 +17,7 @@ public enum Commodity implements Asset{
 
     private final String code;
 
-    Commodity(String code){
+    Commodity(String code) {
         this.code = code;
     }
 

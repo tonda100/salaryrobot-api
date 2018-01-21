@@ -1,12 +1,14 @@
-package com.salaryrobot.api.entity;
+package com.salaryrobot.api.ticker.entity;
 
 import java.io.Serializable;
 
 
 /**
+ * Object for storing ask and bid price.
+ *
  * @author Antonin Stoklasek
  */
-public class Price implements Serializable{
+public class Price implements Serializable {
 
     public static final long serialVersionUID = -1L;
 
