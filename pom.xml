@@ -20,20 +20,24 @@
         </license>
     </licenses>
 
-    <developers>
-        <developer>
-            <name>Antonin Stoklasek</name>
-            <email>antonin.stoklasek@salaryrobot.com</email>
-            <organization>Fotolet s.r.o.</organization>
-            <organizationUrl>http://www.salaryrobot.com</organizationUrl>
-        </developer>
-    </developers>
-
     <scm>
         <url>https://github.com/tonda100/salaryrobot-api</url>
         <connection>scm:git:git://github.com/tonda100/salaryrobot-api.git</connection>
         <developerConnection>scm:git:git@github.com:tonda100/salaryrobot-api.git</developerConnection>
     </scm>
+
+    <developers>
+        <developer>
+            <name>Antonin Stoklasek</name>
+            <email>antonin.stoklasek@salaryrobot.com</email>
+            <organizationUrl>http://www.salaryrobot.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Michal Tkadlec</name>
+            <email>michal.tkadlec@salaryrobot.com</email>
+            <organizationUrl>http://www.salaryrobot.com</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
