@@ -36,7 +36,7 @@ public class SimpleValueAveraging extends StrategyScript {
         double currInUSD = curr * (bid + ask) / 2;
         double totalUSD = usd + currInUSD;
 
-        double currentTarget = (double) storage.getOrDefault("currentTarget", currInUSD);
+        double currentTarget = Double.valueOf(storage.getOrDefault("currentTarget", currInUSD + "").toString());
         if (currentTarget < targetValue) {
             currentTarget += step;
             storage.put("currentTarget", currentTarget);
