@@ -24,6 +24,15 @@ public interface Ticker {
     Price getLatest(ExchangePair exchangePair);
 
     /**
+     * Method for price at given time and specific exchange pair.
+     *
+     * @param exchangePair exchange pair which price you need to receive
+     * @param dateTime time of the price
+     * @return price of exchange pair for given time
+     */
+    Price getPrice(ExchangePair exchangePair, ZonedDateTime dateTime);
+
+    /**
      * Method for receiving set of all price between given from time and now.
      *
      * @param exchangePair exchange pair which prices you need to receive

@@ -7,6 +7,7 @@ import com.salaryrobot.api.exchange.boundary.Trader;
 import com.salaryrobot.api.exchange.boundary.Wallet;
 import com.salaryrobot.api.graph.boundary.Graphs;
 import com.salaryrobot.api.logger.boundary.Logger;
+import com.salaryrobot.api.strategy.entity.StrategyFrequency;
 import com.salaryrobot.api.ticker.boundary.Ticker;
 
 
@@ -16,6 +17,9 @@ import com.salaryrobot.api.ticker.boundary.Ticker;
  * @author m.tkadlec
  */
 public abstract class StrategyScript {
+
+    // frequency of strategy ticks
+    protected StrategyFrequency frequency;
 
     // storage which survives the ticks
     protected Map storage;
@@ -79,5 +83,9 @@ public abstract class StrategyScript {
 
     public void setTicker(Ticker ticker) {
         this.ticker = ticker;
+    }
+
+    public void setFrequency(StrategyFrequency frequency) {
+        this.frequency = frequency;
     }
 }
